@@ -2,7 +2,6 @@ function docGenerate(obj, insertData) {
   'use strict';
   try {
 
- 
     function loadFile(url, callback){
       JSZipUtils.getBinaryContent(url, callback);
     }
@@ -84,6 +83,7 @@ function docGenerate(obj, insertData) {
   } catch(e) {
 
     alert('Sorry, error ocurred. Try again');
+    alert(e.message);
     location.reload();
   }
   
