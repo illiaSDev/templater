@@ -100,14 +100,19 @@
     var insertData = {};
     for (var i = 0; i < inputs.length; i++)
       if (trimWhitespaceCharacters(inputs[i].value) == '') {
-        insertData[inputs[i].id] = undefined;
+        insertData[inputs[i].id] = "???????";
       } else
         insertData[inputs[i].id] = trimWhitespaceCharacters(inputs[i].value);
 
-     document.querySelector('.loader').style.zIndex = 5;
-     document.querySelector('.loader').style.opacity = 1;
+    for (var item in insertData) {
+     alert(insertData[item]);
+    }
 
-     docGenerate(obj, insertData);
+    document.querySelector('.loader').style.zIndex = 5;
+    document.querySelector('.loader').style.opacity = 1;
+
+    docGenerate(obj, insertData);
+
 
   }
 </script>
