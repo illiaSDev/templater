@@ -2,7 +2,7 @@ function docGenerate(obj, insertData) {
   'use strict';
   try {
 
-    function loadFile(url, callback){
+    function loadFile(url, callback) {
       JSZipUtils.getBinaryContent(url, callback);
     }
 
@@ -15,9 +15,10 @@ function docGenerate(obj, insertData) {
 
       return function() {
         loadFile(internal, function(error, content){
-
+         
+          content.mimeType = "application/pdf";
           if (error) { throw error };
-
+          
           var zip = new JSZip(content);
           var doc = new Docxtemplater().loadZip(zip);
 
@@ -39,9 +40,7 @@ function docGenerate(obj, insertData) {
 
           out[internal] = doc.getZip().generate({
             type:"blob",
-            mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            compression: 'DEFLATE'
-            /*compressionOptions: {level: 5}*/
+            mimeType: "application/pdf"
           });
 
         });
@@ -58,7 +57,8 @@ function docGenerate(obj, insertData) {
       var zip = new JSZip();
 
       for (var i = 0; i < obj.length; i++) {
-        zip.file(obj[i], out[obj[i]], {binary: true});
+        
+        zip.file(obj[i].slice(0, -4) + "pdf", out[obj[i]], {binary: true});
       }
       
       
@@ -72,7 +72,6 @@ function docGenerate(obj, insertData) {
             document.querySelector('.loader').style.zIndex = -2;
             location.reload();
           }
-
           saveAs(content, "docs.zip");
 
           document.querySelector('.loader').style.opacity = 0;
