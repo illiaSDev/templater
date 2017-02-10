@@ -1,0 +1,146 @@
+<html>
+<head>
+    <script src="js/docxtemplater.js"></script>
+    <script src="js/jszip.js" id="test"></script>
+    <script src="js/filesaver.js"></script>
+    <script src="js/jszip-utils.js"></script>
+    <script src='js/obj.js'></script>
+    <script src ='js/docGenerate.js'></script>
+    <meta charset="utf-8">
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
+      .loader {
+        position: fixed;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-justify-content: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        z-index: 5; 
+        background-color: rgba(0,0,0,0.65);
+        -webkit-align-items: center; /* Safari 7.0+ */
+        align-items: center;
+        opacity: 0;
+        z-index: -2;
+        transition: opacity 0.7s;
+      }
+      .spiner {
+        position: relative;
+        margin: auto;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 5px transparent solid;
+        border-bottom-color: white;
+        border-top-color: white;
+        animation: mymove 2s infinite linear;
+      }
+      @-webkit-keyframes mymove {
+          from {transform: rotateZ(0deg);}
+          to {transform: rotateZ(360deg);}
+      }
+
+     
+      @keyframes mymove {
+          from {transform: rotateZ(0deg);}
+          to {transform: rotateZ(360deg);}
+      }
+      .form {
+        padding: 20px;
+      }
+      .form input{
+        margin: 10px;
+        background-color: grey;
+        color: white;
+        display: block;
+        width: 100%;
+        max-width: 400px;
+      }
+    </style>
+</head>
+<body>  
+
+<!-- <div class="loader">
+  <div style="width: 200px; height: 140px; background-color: rgba(0,0,0,0.75); padding-top: 30px; color: white;font-family: sans-serif;">
+    <div class='spiner'></div>
+    <p style="margin: 10px;">Creation in progress...</p>
+  </div>
+</div> -->
+
+
+<div class='form'>
+  name <input id='name' type='text' >
+  Surname <input id='surname' type='text' >
+  secondName <input id='secondName' type='text' >
+  INN <input id='INN' type='text' >
+  Tel <input id='Tel' type='text' >
+  email <input id='email' type='text' >
+  <button onclick="gatherInfo();">Generate Documents</button>
+</div>
+
+<script>
+  function trimWhitespaceCharacters(str) {
+    while (str[0] == " ") {
+      str = str.slice(1);
+    }
+    while( str[str.length-1] == " ") {
+      str = str.slice(0, str.length-1);
+    }
+    return str;
+  }
+
+  function gatherInfo() {
+
+var json = "";
+    var inputs = document.querySelectorAll('div input');
+    
+    var insertData = {};
+    for (var i = 0; i < inputs.length; i++)
+      if (trimWhitespaceCharacters(inputs[i].value) == '') {
+        insertData[inputs[i].id] = "???????";
+        json += inputs[i].id +"="+ "???????" + "&";
+      } else {
+        json += inputs[i].id +"="+ trimWhitespaceCharacters(inputs[i].value)+ "&";
+        insertData[inputs[i].id] = trimWhitespaceCharacters(inputs[i].value);
+      }
+
+/*    for (var item in insertData) {
+     alert(insertData[item]);
+    }*/
+
+    var xhr = new XMLHttpRequest();
+
+    
+    alert(json);
+
+  xhr.open("POST", 'ajax.php', true)
+  //xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+
+  xhr.onreadystatechange = function() { // (3)
+  if (xhr.readyState != 4) return;
+
+  if (xhr.status != 200) {
+    alert(xhr.status + ': ' + xhr.statusText);
+  } else {
+    alert(xhr.responseText);
+  }
+
+}
+var jsonObj = { first: "John", second: "Doe"}
+  json='requestData=' + JSON.stringify(jsonObj);
+  alert(json);
+ xhr.send(json);
+// Отсылаем объект в формате JSON и с Content-Type application/json
+// Сервер должен уметь такой Content-Type принимать и раскодировать
+  
+
+  }
+</script>
+
+</body>
+</html>
