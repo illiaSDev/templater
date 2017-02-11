@@ -1,11 +1,5 @@
 <html>
 <head>
-    <script src="js/docxtemplater.js"></script>
-    <script src="js/jszip.js" id="test"></script>
-    <script src="js/filesaver.js"></script>
-    <script src="js/jszip-utils.js"></script>
-    <script src='js/obj.js'></script>
-    <script src ='js/docGenerate.js'></script>
     <meta charset="utf-8">
     <style>
       * {
@@ -33,8 +27,6 @@
   </div>
 
   <div id="ajaxResponse">
-    
-
   </div>
 <script>
 //document.cookie = "generationDateStamp=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
@@ -92,7 +84,7 @@
       }
 
     }
-    var json='requestData=' + JSON.stringify(insertData) + '&generationDateStamp=' + getDateStamp();
+    var json='requestData=' + JSON.stringify(insertData) + '&generationDateStamp=' + getDateStamp() + "&stageOneScenario=0";
     xhr.send(json);
 
   }
@@ -127,7 +119,7 @@
       }
 
     }
-    var json='requestData=' + JSON.stringify(insertData) + '&generationDateStamp=' + getDateStamp();
+    var json='requestData=' + JSON.stringify(insertData) + '&generationDateStamp=' + getDateStamp() + "&stageTwoScenario=0";
     xhr.send(json);
 
     document.cookie = "generationDateStamp=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"

@@ -1,16 +1,15 @@
 <?php
 
 
-echo(headers_sent());
 ignore_user_abort(false);
 
-$newDir = "compress\\";
+$newDir = "docs".$_POST['generationDateStamp'];
 
 require_once 'vendor/autoload.php';
-include 'php/obj.php';
+include 'php/stageTwoPaths.php';
   //------------------------------------------------------------------------------------------------------------------------------------------------------------
 include 'php/createTreeStructure.php';
-//createTreeStructure($newDir);
+createOutputDir($newDir);
   //------------------------------------------------------------------------------------------------------------------------------------------------------------
 include 'php/dirForConverter.php';
 
@@ -23,57 +22,45 @@ function fillAndSaveTemplate($str, $newDir) {
   //------------------------------------------------------------------------------------------------------------------------------------------------------------
   $templateProcessor->setValue('Name', 'John Doe');
   //------------------------------------------------------------------------------------------------------------------------------------------------------------
-  $newPath = $newDir . $str;
+  $newPath = $newDir . getTemplateDocNameWithForwardingSlash($str);
 
   $newPath = mb_convert_encoding($newPath, 'cp1251');
   
   $templateProcessor->saveAs($newPath);
 }
 
-/*for ($x = 0; $x < count($obj); $x++) {
+for ($x = 0; $x < count($obj[$_POST['stageTwoScenario']]); $x++) {
 
-  fillAndSaveTemplate($obj[$x], $newDir); 
+  fillAndSaveTemplate($obj[$_POST['stageTwoScenario']][$x], $newDir); 
 
   //------------------------------------------------------------------------------------------------------------------------------------------------------------
-  $filepath = '"' . getcwd() . '\\'.$newDir . $obj[$x] . '"';
 
-  $command = 'E:\Illia\program\soffice.exe -headless -convert-to pdf ' . $filepath .' -outdir "'. getcwd() . '\\' .$newDir .dirForConverter($obj[$x]).'"';
-  $command = mb_convert_encoding($command, 'cp1251');
-
-  exec($command);
-
-  echo (connection_aborted());
-  if(connection_aborted() == 1) {
-    
-   // kill_the_process();//this will kill the running process launched by script
-    die("Error");
-  }
-
+  toPdfConversion(getTemplateDocNameWithForwardingSlash($obj[$_POST['stageTwoScenario']][$x]), $newDir);
 }
 
 
 
-$rarCmd = '"C:\Program Files\WinRAR\Rar.exe" a -ep1 -r -m5 -df "'.getcwd().'\compress1.rar" "'.getcwd().'\\'.$newDir.'*.pdf"';
+$rarCmd = '"C:\Program Files\WinRAR\Rar.exe" a -ep1 -r -m5 -df "'.getcwd().'\\'.$newDir.'.rar" "'.getcwd().'\\'.$newDir.'\\*.pdf"';
 echo exec($rarCmd);
 
-$rarCmd = '"C:\Program Files\WinRAR\Rar.exe" a -ep1 -r -m5 -df "'.getcwd().'\buf.rar" "'.getcwd().'\\'.$newDir.'*"';
+$rarCmd = '"C:\Program Files\WinRAR\Rar.exe" a -ep1 -r -m5 -df "'.getcwd().'\buf.rar" "'.getcwd().'\\'.$newDir.'\\*"';
 echo exec($rarCmd);
 unlink('buf.rar');
 
-rmdir($newDir);*/
+rmdir($newDir);
 
 
 //$result = json_decode($_POST['requestData'], true);
 //echo $_POST['requestData'];
 
 //file_put_contents(interimFileName($_POST['generationDateStamp']), $_POST['requestData']);
-function EH($e) {echo $e->getMessage();}
+/*function EH($e) {echo $e->getMessage();}
 //set_error_handler(EH);
 set_exception_handler(EH);
 if (!file_get_contents(interimFileName($_POST['generationDateStamp'])))
   throw new Exception("No such file");
 else 
-  echo var_dump(json_decode(file_get_contents(interimFileName($_POST['generationDateStamp'])), true));
+  echo var_dump(json_decode(file_get_contents(interimFileName($_POST['generationDateStamp'])), true));*/
 
 
 

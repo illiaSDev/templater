@@ -2,13 +2,13 @@
 
 ignore_user_abort(false);
 
-$newDir = "compress\\";
+$newDir = "docs".$_POST['generationDateStamp'];
 
 require_once 'vendor/autoload.php';
-include 'php/obj.php';
+include 'php/stageOnePaths.php';
   //------------------------------------------------------------------------------------------------------------------------------------------------------------
 include 'php/createTreeStructure.php';
-//createTreeStructure($newDir);
+createOutputDir($newDir);
   //------------------------------------------------------------------------------------------------------------------------------------------------------------
 include 'php/dirForConverter.php';
 
@@ -21,44 +21,32 @@ function fillAndSaveTemplate($str, $newDir) {
   //------------------------------------------------------------------------------------------------------------------------------------------------------------
   $templateProcessor->setValue('Name', 'John Doe');
   //------------------------------------------------------------------------------------------------------------------------------------------------------------
-  $newPath = $newDir . $str;
+  $newPath = $newDir . getTemplateDocNameWithForwardingSlash($str);
 
   $newPath = mb_convert_encoding($newPath, 'cp1251');
   
   $templateProcessor->saveAs($newPath);
 }
 
-/*for ($x = 0; $x < count($obj); $x++) {
+for ($x = 0; $x < count($obj[$_POST['stageOneScenario']]); $x++) {
 
-  fillAndSaveTemplate($obj[$x], $newDir); 
+  fillAndSaveTemplate($obj[$_POST['stageOneScenario']][$x], $newDir); 
 
   //------------------------------------------------------------------------------------------------------------------------------------------------------------
-  $filepath = '"' . getcwd() . '\\'.$newDir . $obj[$x] . '"';
 
-  $command = 'E:\Illia\program\soffice.exe -headless -convert-to pdf ' . $filepath .' -outdir "'. getcwd() . '\\' .$newDir .dirForConverter($obj[$x]).'"';
-  $command = mb_convert_encoding($command, 'cp1251');
-
-  exec($command);
-
-  echo (connection_aborted());
-  if(connection_aborted() == 1) {
-    
-   // kill_the_process();//this will kill the running process launched by script
-    die("Error");
-  }
-
+  toPdfConversion(getTemplateDocNameWithForwardingSlash($obj[$_POST['stageOneScenario']][$x]), $newDir);
 }
 
 
 
-$rarCmd = '"C:\Program Files\WinRAR\Rar.exe" a -ep1 -r -m5 -df "'.getcwd().'\compress1.rar" "'.getcwd().'\\'.$newDir.'*.pdf"';
+$rarCmd = '"C:\Program Files\WinRAR\Rar.exe" a -ep1 -r -m5 -df "'.getcwd().'\\'.$newDir.'.rar" "'.getcwd().'\\'.$newDir.'\\*.pdf"';
 echo exec($rarCmd);
 
-$rarCmd = '"C:\Program Files\WinRAR\Rar.exe" a -ep1 -r -m5 -df "'.getcwd().'\buf.rar" "'.getcwd().'\\'.$newDir.'*"';
+$rarCmd = '"C:\Program Files\WinRAR\Rar.exe" a -ep1 -r -m5 -df "'.getcwd().'\buf.rar" "'.getcwd().'\\'.$newDir.'\\*"';
 echo exec($rarCmd);
 unlink('buf.rar');
 
-rmdir($newDir);*/
+rmdir($newDir);
 
 
 //$result = json_decode($_POST['requestData'], true);
