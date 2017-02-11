@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<body>
 <?php
+
 ignore_user_abort(false);
 
 $newDir = "compress\\";
@@ -12,11 +8,13 @@ require_once 'vendor/autoload.php';
 include 'php/obj.php';
   //------------------------------------------------------------------------------------------------------------------------------------------------------------
 include 'php/createTreeStructure.php';
-createTreeStructure($newDir);
+//createTreeStructure($newDir);
   //------------------------------------------------------------------------------------------------------------------------------------------------------------
 include 'php/dirForConverter.php';
 
-
+function interimFileName($str) {
+  return $str.".txt";
+}
 
 function fillAndSaveTemplate($str, $newDir) {
   $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor(mb_convert_encoding($str, 'cp1251'));
@@ -29,16 +27,11 @@ function fillAndSaveTemplate($str, $newDir) {
   
   $templateProcessor->saveAs($newPath);
 }
-//$result = json_decode('{"name": "John", "surname": "Doe", "tel": 1234567 }');
 
+/*for ($x = 0; $x < count($obj); $x++) {
 
+  fillAndSaveTemplate($obj[$x], $newDir); 
 
-for ($x = 0; $x < count($obj); $x++) {
-
-
-  fillAndSaveTemplate($obj[$x], $newDir);
-  
-  
   //------------------------------------------------------------------------------------------------------------------------------------------------------------
   $filepath = '"' . getcwd() . '\\'.$newDir . $obj[$x] . '"';
 
@@ -57,19 +50,26 @@ for ($x = 0; $x < count($obj); $x++) {
 }
 
 
+
 $rarCmd = '"C:\Program Files\WinRAR\Rar.exe" a -ep1 -r -m5 -df "'.getcwd().'\compress1.rar" "'.getcwd().'\\'.$newDir.'*.pdf"';
 echo exec($rarCmd);
 
 $rarCmd = '"C:\Program Files\WinRAR\Rar.exe" a -ep1 -r -m5 -df "'.getcwd().'\buf.rar" "'.getcwd().'\\'.$newDir.'*"';
 echo exec($rarCmd);
-//unlink('buf.rar');
+unlink('buf.rar');
 
-//rmdir($newDir);
+rmdir($newDir);*/
+
+
+//$result = json_decode($_POST['requestData'], true);
+//echo $_POST['requestData'];
+
+file_put_contents(interimFileName($_POST['generationDateStamp']), $_POST['requestData']);
+
+
+//echo var_dump(json_decode(file_get_contents(interimFileName($_POST['generationDateStamp'])), true));
+
+
 
 ?>
-
-
 <p>asddddddddddd</p>
-
-</body>
-</html>

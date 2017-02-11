@@ -9,80 +9,50 @@
     <meta charset="utf-8">
     <style>
       * {
-        margin: 0px;
-        padding: 0px;
-      }
-      .loader {
-        position: fixed;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-justify-content: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-        z-index: 5; 
-        background-color: rgba(0,0,0,0.65);
-        -webkit-align-items: center; /* Safari 7.0+ */
-        align-items: center;
-        opacity: 0;
-        z-index: -2;
-        transition: opacity 0.7s;
-      }
-      .spiner {
-        position: relative;
-        margin: auto;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        border: 5px transparent solid;
-        border-bottom-color: white;
-        border-top-color: white;
-        animation: mymove 2s infinite linear;
-      }
-      @-webkit-keyframes mymove {
-          from {transform: rotateZ(0deg);}
-          to {transform: rotateZ(360deg);}
-      }
-
-     
-      @keyframes mymove {
-          from {transform: rotateZ(0deg);}
-          to {transform: rotateZ(360deg);}
-      }
-      .form {
-        padding: 20px;
-      }
-      .form input{
-        margin: 10px;
-        background-color: grey;
-        color: white;
-        display: block;
-        width: 100%;
-        max-width: 400px;
+        margin: 2px;
+        padding: 2px;
       }
     </style>
 </head>
 <body>  
 
-<!-- <div class="loader">
-  <div style="width: 200px; height: 140px; background-color: rgba(0,0,0,0.75); padding-top: 30px; color: white;font-family: sans-serif;">
-    <div class='spiner'></div>
-    <p style="margin: 10px;">Creation in progress...</p>
+  <div class='formStageOne'>
+    name <input id='name' type='text' >
+    Surname <input id='surname' type='text' >
+    secondName <input id='secondName' type='text' >
+    INN <input id='INN' type='text' >
+    Tel <input id='Tel' type='text' >
+    email <input id='email' type='text' >
+    <button onclick="stageOne();">Stage1</button>
   </div>
-</div> -->
 
+  <div class='formStageTwo'>
+    Act Number <input id='actNumber' type='text' >
+    Date <input id='date' type='text' >
+    <button onclick="stageTwo();">Stage2</button>
+  </div>
 
-<div class='form'>
-  name <input id='name' type='text' >
-  Surname <input id='surname' type='text' >
-  secondName <input id='secondName' type='text' >
-  INN <input id='INN' type='text' >
-  Tel <input id='Tel' type='text' >
-  email <input id='email' type='text' >
-  <button onclick="gatherInfo();">Generate Documents</button>
-</div>
+  <div id="ajaxResponse">
+    
 
+  </div>
 <script>
+//document.cookie = "generationDateStamp=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
+//alert(document.cookie);
+  function getDateStamp() {
+
+    var dateStamp = document.cookie.split(";").filter(function(name) {
+      return name.search(/generationDateStamp/) != -1;
+    });
+
+    if (dateStamp.length == 0)
+      return false;
+
+    dateStamp = dateStamp[0].split('=');
+    
+    return dateStamp[1];
+  }
+
   function trimWhitespaceCharacters(str) {
     while (str[0] == " ") {
       str = str.slice(1);
@@ -93,54 +63,77 @@
     return str;
   }
 
-  function gatherInfo() {
+  function stageOne() {
 
-var json = "";
-    var inputs = document.querySelectorAll('div input');
+    document.cookie = "generationDateStamp=" + Date.parse(new Date());
+
+    var inputs = document.querySelectorAll('div.formStageOne input');
     
     var insertData = {};
     for (var i = 0; i < inputs.length; i++)
       if (trimWhitespaceCharacters(inputs[i].value) == '') {
         insertData[inputs[i].id] = "???????";
-        json += inputs[i].id +"="+ "???????" + "&";
       } else {
-        json += inputs[i].id +"="+ trimWhitespaceCharacters(inputs[i].value)+ "&";
         insertData[inputs[i].id] = trimWhitespaceCharacters(inputs[i].value);
       }
 
-/*    for (var item in insertData) {
-     alert(insertData[item]);
-    }*/
+    var xhr = new XMLHttpRequest();
+
+    xhr.open("POST", 'stageOne.php', true)
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+
+    xhr.onreadystatechange = function() { // (3)
+      if (xhr.readyState != 4) return;
+
+      if (xhr.status != 200) {
+        alert(xhr.status + ': ' + xhr.statusText);
+      } else {
+        ajaxResponse.innerHTML = xhr.responseText;
+      }
+
+    }
+    var json='requestData=' + JSON.stringify(insertData) + '&generationDateStamp=' + getDateStamp();
+    xhr.send(json);
+
+  }
+
+  function stageTwo() {
+
+    if (!getDateStamp())
+      return alert("Previous data is unset. Please, pass first stage of creation.");
+
+    var inputs = document.querySelectorAll('div.formStageTwo input');
+    
+    var insertData = {};
+    for (var i = 0; i < inputs.length; i++)
+      if (trimWhitespaceCharacters(inputs[i].value) == '') {
+        insertData[inputs[i].id] = "???????";
+      } else {
+        insertData[inputs[i].id] = trimWhitespaceCharacters(inputs[i].value);
+      }
 
     var xhr = new XMLHttpRequest();
 
-    
-    alert(json);
+    xhr.open("POST", 'stageTwo.php', true)
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
 
-  xhr.open("POST", 'ajax.php', true)
-  //xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    xhr.onreadystatechange = function() { // (3)
+      if (xhr.readyState != 4) return;
 
-  xhr.onreadystatechange = function() { // (3)
-  if (xhr.readyState != 4) return;
+      if (xhr.status != 200) {
+        alert(xhr.status + ': ' + xhr.statusText);
+      } else {
+        ajaxResponse.innerHTML = xhr.responseText;
+      }
 
-  if (xhr.status != 200) {
-    alert(xhr.status + ': ' + xhr.statusText);
-  } else {
-    alert(xhr.responseText);
-  }
+    }
+    var json='requestData=' + JSON.stringify(insertData) + '&generationDateStamp=' + getDateStamp();
+    xhr.send(json);
 
-}
-var jsonObj = { first: "John", second: "Doe"}
-  json='requestData=' + JSON.stringify(jsonObj);
-  alert(json);
- xhr.send(json);
-// Отсылаем объект в формате JSON и с Content-Type application/json
-// Сервер должен уметь такой Content-Type принимать и раскодировать
-  
-
+    document.cookie = "generationDateStamp=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
   }
 </script>
+
 
 </body>
 </html>
