@@ -1,7 +1,7 @@
 <?php 
 function toPdfConversion($str, $newDir) {
   $filepath = '"' . getcwd() . '\\'.$newDir . $str . '"';
-
+  
   $command = 'E:\Illia\program\soffice.exe -headless -convert-to pdf ' . $filepath .' -outdir "'. getcwd() . '\\' .$newDir .'"';
   $command = mb_convert_encoding($command, 'cp1251');
 
