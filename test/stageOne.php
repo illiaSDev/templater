@@ -2,7 +2,7 @@
 
 ignore_user_abort(false);
 
-//error_reporting(0);
+error_reporting(0);
 
 $newDir = "docs".$_POST['generationDateStamp'];
 
@@ -29,7 +29,15 @@ function fillAndSaveTemplate($str, $newDir) {
   
   $templateProcessor->saveAs($newPath);
 }
+  //-------------------------------------------------------------------------------------------------------------------------------------------------------------
+/*$requestData = json_decode($_POST['requestData'], true);
+$inputNames = array();
+$inputValues = array();
 
+foreach($requestData as $x => $x_value) {
+  array_push($inputNames, $x);
+  array_push($inputValues, $x_value);
+}*/
 for ($x = 0; $x < count($obj[$_POST['stageOneScenario']]); $x++) {
 
   try {
