@@ -35,7 +35,7 @@
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
-        <div class="col-md-3 left_col">
+        <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
               <a href="form.html" class="site_title"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> <span>PDF Генератор</span></a>
@@ -129,23 +129,76 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
+                    <div id="wizard" class="form_wizard wizard_horizontal">
+                      <ul class="wizard_steps anchor">
+                        <li>
+                          <a href="#step-1" class="selected" isdone="1" rel="1">
+                            <span class="step_no">1</span>
+                            <span class="step_descr">
+                                              Перший етап<br>
+                                              <small>Оформлення покупки</small>
+                                          </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#step-2" class="disabled" isdone="03" rel="2">
+                            <span class="step_no">2</span>
+                            <span class="step_descr">
+                                              Другий етап<br>
+                                              <small>Введення біржевих номерів</small>
+                                          </span>
+                          </a>
+                        </li>
+                      </ul>
+                      
+                    <div class="stepContainer">
+                      <div id="step-2" class="content" style="display:;">
+                        <form class="form-horizontal form-label-left">
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Перший біржовий номер <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Другий біржевий номер <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="number" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+
+                      <div id="step-1" class="content" style="display: block;">
+                        <h2 class="StepTitle">Заповнення загальної інформації</h2>
+                        <p>
+                          do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                          fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                      </div>
+
+
+                      <!--------------END OF STEPS -->
                     <br />
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
                       <div class="form-group col-md-6 col-sm-12 col-xs-12 personType">
+                        <br>
                         <label class="col-md-6 col-sm-6 col-xs-12 control-label">Тип особи
-                          <br>
+                          </br>
                           <small class="text-navy">виберіть один з варіантів</small>
                         </label>
 
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <div class="radio">
-                            <label class='FO'>
+                            <label class="FO">
                               <input type="radio" class="flat" checked name="iCheck"> Фізична особа або ФОП
                             </label>
                           </div>
                           <div class="radio">
-                            <label class='YO'>
+                            <label class="YO">
                               <input type="radio" class="flat" name="iCheck"> Юридична особа
                             </label>
                           </div>
@@ -177,15 +230,17 @@
                        <div class="form-group  col-md-6 col-sm-12 col-xs-12">
                         <label class="control-label col-md-6 col-sm-6 col-xs-12">Дата укладання договору <span class="required">*</span>
                         </label>
-                        <div class="col-md-2 col-sm-2 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
-                        </div>
-                        <div class="col-md-2 col-sm-2 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
-                        </div>
-                        <div class="col-md-2 col-sm-2 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2015" max="2100" placeholder="рррр">
-                        </div>
+                        <fieldset class="col-md-6 col-sm-12 col-xs-12">
+                          <div class="control-group">
+                            <div class="controls">
+                              <div class="col-md-12 col-sm-12 col-xs-12 xdisplay_inputx form-group has-feedback">
+                                <input type="text" class="form-control has-feedback-left" id="single_cal2" placeholder="Дата підписання договору" aria-describedby="inputSuccess2Status2">
+                                <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                <span id="inputSuccess2Status2" class="sr-only">(success)</span>
+                              </div>
+                            </div>
+                          </div>
+                        </fieldset>
                       </div>
 
                     </form>
@@ -210,32 +265,32 @@
                     <form class="form-horizontal form-label-left input_mask">
 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="Ім'я"  >
+                        <input type="text" class="form-control has-feedback-left" id="individual_name" placeholder="Ім'я" required="required">
                         <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                       </div>
 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control" id="inputSuccess3" placeholder="Прізвище"  >
+                        <input type="text" class="form-control" id="individual_surname" placeholder="Прізвище" required="required">
                         <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                       </div>
 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="По батькові"  >
+                        <input type="text" class="form-control has-feedback-left" id="individual_middlename" placeholder="По батькові" required="required">
                         <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                       </div>
 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control" id="inputSuccess3" placeholder="Громадянство"  >
+                        <input type="text" class="form-control" id="individual_citizenship" placeholder="Громадянство" required="required">
                         <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                       </div>
                       
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="email" class="form-control has-feedback-left" id="inputSuccess4" placeholder="Email"  >
+                        <input type="email" class="form-control has-feedback-left" id="individual_email" placeholder="Email">
                         <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
                       </div>
 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="tel" class="form-control" id="inputSuccess5" placeholder="Телефон">
+                        <input type="text" class="form-control" id="individual_phone" placeholder="Телефон" data-inputmask="'mask' : '(999) 999-9999'">
                         <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
                       </div>
 
@@ -256,28 +311,30 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Фактичне місце проживання<span class="required">*</span></label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" placeholder="Фактичне місце проживання"  >
+                          <input type="text" class="form-control" placeholder="Фактичне місце проживання" required="required" id="individual_homeadress">
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Ідентифікаційний код<span class="required">*</span></label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="number" class="form-control"   placeholder="ID">
+                          <input type="number" class="form-control" required="required" id="individual_id" placeholder="Ідентифікаційний код">
                         </div>
                       </div>
 
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Дата народження <span class="required">*</span>
+                      <div class="form-group  col-md-12 col-sm-12 col-xs-12">
+                        <label class="control-label col-md-3 col-sm-6 col-xs-12">Дата народження <span class="required">*</span>
                         </label>
-                        <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
-                        </div>
-                        <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
-                        </div>
-                        <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1900" max="2016" placeholder="рррр">
-                        </div>
+                        <fieldset>
+                          <div class="control-group ">
+                            <div class="controls">
+                              <div class="col-md-12 xdisplay_inputx form-group has-feedback">
+                                <input type="text" class="form-control has-feedback-left" id="single_cal1" placeholder="Дата народження клієнта" aria-describedby="inputSuccess2Status2">
+                                <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                <span id="inputSuccess2Status3" class="sr-only">(success)</span>
+                              </div>
+                            </div>
+                          </div>
+                        </fieldset>
                       </div>
 
                       <div class="x_title">
@@ -289,10 +346,10 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">№ Паспорту <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-4 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="text" placeholder="Серія">
+                          <input id="individual_passport_series" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" placeholder="Серія">
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="text" placeholder="Номер">
+                          <input id="individual_passport_number" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" placeholder="Номер">
                         </div>
                       </div>
 
@@ -300,7 +357,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Місце видачі <span class="required">*</span>
                         </label>
                         <div class="col-md-5 col-sm-6 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="text" placeholder="">
+                          <input id="individual_passport_state" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" placeholder="Регіон">
                         </div>
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:left;">МВ УДМС України
                         </label>
@@ -310,24 +367,26 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">в 
                         </label>
                         <div class="col-md-5 col-sm-6 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="text" placeholder="">
+                          <input id="individual_passport_oblast" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" placeholder="Область">
                         </div>
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:left;">області
                         </label>
                       </div>
 
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Дата видачі <span class="required">*</span>
+                      <div class="form-group  col-md-12 col-sm-12 col-xs-12">
+                        <label class="control-label col-md-3 col-sm-6 col-xs-12">Дата видачі <span class="required">*</span>
                         </label>
-                        <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
-                        </div>
-                        <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
-                        </div>
-                        <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1900" max="2016" placeholder="рррр">
-                        </div>
+                        <fieldset>
+                          <div class="control-group ">
+                            <div class="controls">
+                              <div class="col-md-12 xdisplay_inputx form-group has-feedback">
+                                <input type="text" class="form-control has-feedback-left" id="single_cal3" placeholder="Дата видачі паспорту" aria-describedby="inputSuccess2Status2">
+                                <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                <span id="inputSuccess2Status4" class="sr-only">(success)</span>
+                              </div>
+                            </div>
+                          </div>
+                        </fieldset>
                       </div>
 
                       <div class="x_title">
@@ -339,10 +398,10 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Місто <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-5 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="text" placeholder="Місто">
+                          <input id="individual_passport_city" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" placeholder="Місто">
                         </div>
                         <div class="col-md-2 col-sm-4 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="0" max="99999" placeholder="Індекс">
+                          <input id="individual_passport_index" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="0" max="99999" placeholder="Індекс">
                         </div>
                       </div>
 
@@ -350,13 +409,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Адреса <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-5 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="text" placeholder="вулиця">
+                          <input id="individual_passport_street" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" placeholder="вулиця">
                         </div>
                         <div class="col-md-2 col-sm-2 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="text" placeholder="буд.">
+                          <input id="individual_passport_house" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" placeholder="буд.">
                         </div>
                         <div class="col-md-2 col-sm-2 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="text" placeholder="кв.">
+                          <input id="individual_passport_flat" class="date-picker form-control col-md-7 col-xs-12" type="num" placeholder="кв.">
                         </div>
                       </div>
 
@@ -379,70 +438,71 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Повна назва підприємства<span class="required">*</span></label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="number" class="form-control"   placeholder="Повна назва">
+                          <input type="text" id="company_full_name" class="form-control" required="required" placeholder="Повна назва">
                         </div>
                       </div>
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Скорочена назва підприємства<span class="required">*</span></label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="number" class="form-control"   placeholder="Скорочена назва">
+                          <input type="text" id="company_short_name" class="form-control" required="required" placeholder="Скорочена назва">
                         </div>
                       </div>
+                      <label class="col-md-12 col-sm-3 col-xs-12">Данні власника<span class="required">*</span></label>
 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="Ім'я"  >
+                        <input type="text" class="form-control has-feedback-left" id="company_owner_name" placeholder="Ім'я" required="required">
                         <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                       </div>
 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control" id="inputSuccess3" placeholder="Прізвище"  >
+                        <input type="text" class="form-control" id="company_owner_surname" placeholder="Прізвище" required="required">
                         <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                       </div>
 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="По батькові"  >
+                        <input type="text" class="form-control has-feedback-left" id="company_owner_middlename" placeholder="По батькові" required="required">
                         <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                       </div>
 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control" id="inputSuccess3" placeholder="Посада"  >
+                        <input type="text" class="form-control" id="company_owner_position" placeholder="Посада" required="required">
                         <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                       </div>
                       
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="email" class="form-control has-feedback-left" id="inputSuccess4" placeholder="Email"  >
+                        <input type="email" class="form-control has-feedback-left" id="company_owner_email" placeholder="Email" required="required">
                         <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
                       </div>
 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="tel" class="form-control" id="inputSuccess5" placeholder="Телефон">
+                        <input type="number" class="form-control" id="company_owner_tel" placeholder="Телефон">
                         <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
                       </div>
                       
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Місцезнаходження<span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" class="form-control" placeholder=""  >
+                          <input type="text" id="company_registration" class="form-control" placeholder="Адреса реєстрації" required="required">
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-12">
-                          <input type="text" class="form-control" placeholder="Індекс"  >
+                          <input type="text" id="company_registration_index" class="form-control" placeholder="Індекс" required="required">
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Ідентифікаційний код та ЄДРПОУ<span class="required">*</span></label>
                         <div class="col-md-4 col-sm-5 col-xs-12">
-                          <input type="number" class="form-control"   placeholder="Код">
+                          <input type="number" id="company_id" class="form-control" required="required" placeholder="Код">
                         </div>
                         <div class="col-md-5 col-sm-4 col-xs-12">
-                          <input type="number" class="form-control"   placeholder="ЄДРПОУ">
+                          <input type="number" id="company_edrpou" class="form-control" required="required" placeholder="ЄДРПОУ">
                         </div>
                       </div>
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Номер свідоцтва платника ПДВ<span class="required">*</span></label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="number" class="form-control"   placeholder="Номер">
+                          <input type="text" class="form-control" placeholder="Номер" id="company_pdv_number">
                         </div>
                       </div>
 
@@ -452,26 +512,26 @@
                       </div>
 
                        <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="Ім'я"  >
+                        <input type="text" class="form-control has-feedback-left" id="company_member_name" placeholder="Ім'я" required="required">
                         <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                       </div>
 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control" id="inputSuccess3" placeholder="Прізвище"  >
+                        <input type="text" class="form-control" id="company_member_surname" placeholder="Прізвище" required="required">
                         <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                       </div>
 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="По батькові"  >
+                        <input type="text" class="form-control has-feedback-left" id="company_member_middlename" placeholder="По батькові" required="required">
                         <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                       </div>
 
                       <div class="form-group">
                         <div class="col-md-2 col-sm-2 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="text" placeholder="Серія">
+                          <input id="company_member_passport_series" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" placeholder="Серія">
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" placeholder="Номер паспорту">
+                          <input id="company_member_passport_number" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" placeholder="Номер паспорту">
                         </div>
                       </div>
 
@@ -479,7 +539,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Місце видачі <span class="required">*</span>
                         </label>
                         <div class="col-md-5 col-sm-6 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="text" placeholder="">
+                          <input id="company_member_passport_region" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" placeholder="Регіон">
                         </div>
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:left">МВ УДМС України
                         </label>
@@ -489,23 +549,46 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">в 
                         </label>
                         <div class="col-md-5 col-sm-6 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="text" placeholder="">
+                          <input id="company_member_passport_oblast" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" placeholder="Область">
                         </div>
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:left">області
                           </label>
                       </div>
 
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Дата видачі <span class="required">*</span>
+                      <div class="form-group  col-md-12 col-sm-12 col-xs-12">
+                        <label class="control-label col-md-3 col-sm-6 col-xs-12">Дата видачі <span class="required">*</span>
                         </label>
-                        <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                        <fieldset>
+                          <div class="control-group ">
+                            <div class="controls">
+                              <div class="col-md-12 xdisplay_inputx form-group has-feedback">
+                                <input type="text" class="form-control has-feedback-left" id="single_cal4" placeholder="Дата видачі паспорту" aria-describedby="inputSuccess2Status2">
+                                <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                <span id="inputSuccess2Status5" class="sr-only">(success)</span>
+                              </div>
+                            </div>
+                          </div>
+                        </fieldset>
+                      </div>
+
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Фактичне місце проживання<span class="required">*</span></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="Фактичне місце проживання" required="required" id="company_member_live_place">
                         </div>
-                        <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Посада підписанта<span class="required">*</span></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" id="company_member_position" placeholder="Посада" required="required">
                         </div>
-                        <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1900" max="2016" placeholder="рррр">
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Документ на основі якого делеговані повноваження<span class="required">*</span></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" id="company_member_document" placeholder="Документ">
                         </div>
                       </div>
 
@@ -518,10 +601,10 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Розрахунковий рахунок <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-6 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" placeholder="р/р">
+                          <input id="company_bank_account" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" placeholder="р/р">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" placeholder="МФО">
+                          <input id="company_bank_mfo" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" placeholder="МФО">
                         </div>
                       </div>
 
@@ -529,7 +612,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Назва банку <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="text" placeholder="Назва банку">
+                          <input id="company_bank_name" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" placeholder="Назва банку">
                         </div>
                       </div>
                     </form>
@@ -566,10 +649,10 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Приміщення <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="text" placeholder="Номер">
+                          <input id="building_number" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" placeholder="Номер">
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="text" placeholder="Секція">
+                          <input id="building_section" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" placeholder="Секція">
                         </div>
                       </div>
 
@@ -577,47 +660,135 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Приміщення <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="text" placeholder="Поверх">
+                          <input id="building_floor" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" placeholder="Поверх">
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="text" placeholder="Кількість кімнат">
+                          <input id="building_rooms" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" placeholder="Кількість кімнат">
                         </div>
                       </div>
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Загальна площа(проектна)</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" placeholder="м^2">
+                          <input type="text" class="form-control" placeholder="м^2" id="building_complete_area">
                         </div>
                       </div>
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Вартість 1м^2</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" placeholder="Ціна в гривнях">
+                          <input type="number" class="form-control" placeholder="Ціна в гривнях" id="building_price_per_1_m">
                         </div>
                       </div>
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Загальна вартість об'єкта інвестування</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" placeholder="Ціна в гривнях">
+                          <input type="number" class="form-control" placeholder="Ціна в гривнях" id="building_complete_price">
                         </div>
                       </div>
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Ціна форвардного контракту</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" placeholder="Ціна в гривнях (числом)">
+                          <input type="number" class="form-control" placeholder="Ціна в гривнях (числом)" id="building_forward_price_num">
                         </div>
                         <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" placeholder="Ціна в гривнях (словами)">
+                          <input type="text" class="form-control" placeholder="Ціна в гривнях (словами)" id="building_forward_price_text">
                         </div>
                       </div>
 
                       <div class="ln_solid"></div>
-                      
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Ціна майнових прав на приміщення</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="number" class="form-control" placeholder="Ціна в гривнях (числом)" id="building_property_price_num">
+                        </div>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="Ціна в гривнях (словами)" id="building_property_price_text">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">USD</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="number" class="form-control" placeholder="Ціна в доларах США (числом)" id="building_property_price_num_usd">
+                        </div>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="Ціна в доларах США (словами)" id="building_property_price_text_usd">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Ціна майнових прав на приміщення (ПДВ)</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="number" class="form-control" placeholder="Ціна в гривнях (числом) ПДВ" id="building_property_price_num_pdv">
+                        </div>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="Ціна в гривнях (словами) ПДВ" id="building_property_price_text_pdv">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">USD</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="number" class="form-control" placeholder="Ціна в доларах США (числом) ПДВ" id="building_property_price_num_pdv_usd">
+                        </div>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="Ціна в доларах США (словами) ПДВ" id="building_property_price_text_pdv_usd">
+                        </div>
+                      </div>
+
+                      <div class="ln_solid"></div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Ціна майнових прав на 1м^2 приміщення</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="number" class="form-control" placeholder="Ціна в гривнях (числом)" id="building_property_price_per1m_num">
+                        </div>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="Ціна в гривнях (словами)" id="building_property_price_per1m_text">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">USD</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="Ціна в доларах США (числом)" id="building_property_price_per1m_num_usd">
+                        </div>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="Ціна в доларах США (словами)" id="building_property_price_per1m_text_usd">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Ціна майнових прав на 1м^2 приміщення (ПДВ)</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="Ціна в гривнях (числом) ПДВ" id="building_property_price_per1m_num_pdv">
+                        </div>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="Ціна в гривнях (словами) ПДВ" id="building_property_price_per1m_text_pdv">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">USD</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="Ціна в доларах США (числом) ПДВ" id="building_property_price_per1m_num_pdv_usd">
+                        </div>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="Ціна в доларах США (словами) ПДВ" id="building_property_price_per1m_text_pdb_usd">
+                        </div>
+                      </div>
+
+
+                      <div class="ln_solid"></div>
+                     
 
                     </form>
                   </div>
@@ -671,53 +842,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Сума платежу</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" placeholder="Сума в доларах США (числом)">
-                        </div>
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" placeholder="Сума в доларах США (словами)">
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Сума ПДВ</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" placeholder="Сума в доларах США (числом)">
-                        </div>
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" placeholder="Сума в доларах США (словами)">
-                        </div>
-                      </div>
-                      <div class="ln_solid"></div>
-<!-- end -->        </div>
-<!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-<!-- Generate depends on option value -->
-                    <div class="dependGen">
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
-                        </label>
-                        <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
-                        </div>
-                        <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
-                        </div>
-                        <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -751,53 +882,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Сума платежу</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" placeholder="Сума в доларах США (числом)">
-                        </div>
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" placeholder="Сума в доларах США (словами)">
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Сума ПДВ</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" placeholder="Сума в доларах США (числом)">
-                        </div>
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" placeholder="Сума в доларах США (словами)">
-                        </div>
-                      </div>
-                      <div class="ln_solid"></div>
-<!-- end -->        </div>
-<!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-<!-- Generate depends on option value -->
-                    <div class="dependGen">
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
-                        </label>
-                        <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
-                        </div>
-                        <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
-                        </div>
-                        <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -831,13 +922,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -871,13 +962,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -911,13 +1002,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -951,13 +1042,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -991,13 +1082,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -1031,13 +1122,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -1071,13 +1162,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -1111,13 +1202,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -1151,13 +1242,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -1191,13 +1282,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -1231,13 +1322,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -1271,13 +1362,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -1311,13 +1402,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -1351,13 +1442,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -1391,13 +1482,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -1431,13 +1522,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -1471,13 +1562,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -1511,13 +1602,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -1551,13 +1642,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -1591,13 +1682,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
                         </label>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="31" placeholder="чч">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="1" max="12" placeholder="мм">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-12 form-group">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"   type="number" min="2016" max="2100" placeholder="рррр">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
                         </div>
                       </div>
 
@@ -1625,7 +1716,86 @@
                       <div class="ln_solid"></div>
 <!-- end -->        </div>
 <!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<!-- Generate depends on option value -->
+                    <div class="dependGen">
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
+                        </label>
+                        <div class="col-md-2 col-sm-3 col-xs-12 form-group">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
+                        </div>
+                        <div class="col-md-2 col-sm-3 col-xs-12 form-group">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
+                        </div>
+                        <div class="col-md-2 col-sm-3 col-xs-12 form-group">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
+                        </div>
+                      </div>
 
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Сума платежу</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="Сума в доларах США (числом)">
+                        </div>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="Сума в доларах США (словами)">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Сума ПДВ</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="Сума в доларах США (числом)">
+                        </div>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="Сума в доларах США (словами)">
+                        </div>
+                      </div>
+                      <div class="ln_solid"></div>
+<!-- end -->        </div>
+<!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<!-- Generate depends on option value -->
+                    <div class="dependGen">
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Кінцева дата платежу <span class="required">*</span>
+                        </label>
+                        <div class="col-md-2 col-sm-3 col-xs-12 form-group">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="31" placeholder="чч">
+                        </div>
+                        <div class="col-md-2 col-sm-3 col-xs-12 form-group">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="1" max="12" placeholder="мм">
+                        </div>
+                        <div class="col-md-2 col-sm-3 col-xs-12 form-group">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number" min="2016" max="2100" placeholder="рррр">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Сума платежу</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="Сума в доларах США (числом)">
+                        </div>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="Сума в доларах США (словами)">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Сума ПДВ</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="Сума в доларах США (числом)">
+                        </div>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="Сума в доларах США (словами)">
+                        </div>
+                      </div>
+                      <div class="ln_solid"></div>
+<!-- end -->        </div>
+<!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
                     </form>
                     <button onclick="stageOne()">Send</button>
                   </div>
@@ -1635,13 +1805,12 @@
 
           </div>
         </div>
-
         <!-- /page content -->
 
         <!-- footer content -->
-        <footer>
+        <footer class="footer_fixed">
           <div class="pull-right">
-            Разработка приложения: <a href="https://bubblegum.house">BubbleGum</a>
+             Розробка додатку: <a href="https://bubblegum.house">BubbleGum</a>
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -1684,6 +1853,7 @@
     <script src="../vendors/starrr/dist/starrr.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.js"></script>
-	  <script src="../build/js/logic.js"></script>
+    <script src="../build/js/logic.js"></script>
+	
   </body>
 </html>

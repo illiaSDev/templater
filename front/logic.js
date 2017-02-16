@@ -2,9 +2,13 @@ function getOsobaInputs(whichDiv, data) {
   var inputs = document.querySelectorAll(whichDiv + " input");
 
   for (var i = 0; i < inputs.length; i++){
-    if (inputs[i].type == "radio")
-      if (inputs[i].checked)
+    if (inputs[i].type == "radio") {
+      alert(inputs[i].checked);
+      if (inputs[i].checked) {
         data[inputs[i].parentElement.parentElement.id] = trimWhitespaceCharacters(inputs[i].nextSibling.nodeValue);
+      }
+      continue;
+    }
 
     if (trimWhitespaceCharacters(inputs[i].value) == '') {
       alert("Заповніть поле '" + inputs[i].placeholder + "'");
@@ -93,7 +97,7 @@ function scenarioTwoChoose(person, basement, payment) {
     var insertData = {};
     var whichDivOsoba = document.querySelector('.personType div.checked');
     var dictionary = {'FO': ".fizOsoba", 'YO': ".yurOsoba"};
-    
+
     if (!getOsobaInputs(dictionary[whichDivOsoba.parentElement.classList], insertData)) {
       return;
     }
