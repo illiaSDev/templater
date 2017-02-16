@@ -60,7 +60,6 @@ function scenarioTwoChoose(person, basement, payment) {
 
   return obj[person][basement][payment];
 }
-//getInputs(".fizOsoba ");
 
 
   function getDateStamp() {
@@ -108,8 +107,37 @@ function scenarioTwoChoose(person, basement, payment) {
       divBasement.querySelector('select').value,
       divPaymentType.parentElement.classList);
 
+    if (!getOsobaInputs(".basement", insertData)) {
+      return;
+    }
+
+    var dependString = "";
+
+    var dependGens = document.querySelectorAll('.dependGen');
+
+    for (var i = 0; i < dependGens.length; i++) {
+
+      if (getComputedStyle(dependGens[i]).display != "none") {
+        dependString += "\n";
+        
+        var dependGenInputs = dependGens[i].querySelectorAll('input');
+
+        for (var j = 0; j < dependGenInputs.length; j++)
+          if (trimWhitespaceCharacters(dependGenInputs[j].value) == "")
+            return alert("Заповніть поле '" + dependGenInputs[j].placeholder + "'");
+          else
+            dependString += dependGenInputs[j].value + "  ";
+      }
+
+      
+    }
+
+    insertData['dependString'] = dependString;       
+    
+
     for (var name in insertData)
       alert('inserData[' + name + '] = ' + insertData[name]);
+
 
     
 /*    for (var i = 0; i < inputs.length; i++)
