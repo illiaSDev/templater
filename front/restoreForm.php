@@ -8,12 +8,13 @@ function interimFileName($str) {
 }
 
 
-try{
-  $returnTxt = file_get_contents(interimFileName($_POST['generationDateStamp']));
-  $returnObj = json_decode( $returnTxt, true);
-  echo(json_encode($returnObj));
-} catch(Exception $e) {
-  echo 'error encountered';
-}
+
+  if (file_exists(interimFileName($_POST['generationDateStamp']))) {
+    $returnTxt = file_get_contents(interimFileName($_POST['generationDateStamp']));
+    echo $returnText;
+  }
+  else echo 'error encountered';
+
+
 
 ?>

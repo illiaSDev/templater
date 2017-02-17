@@ -1,3 +1,25 @@
+alert(document.cookie);
+var calendar = {
+  "01": "січня",
+  "02": "лютого",
+  "03": "березня",
+  "04": "квітня",
+  "05": "травня",
+  "06": "червня",
+  "07": "липня",
+  "08": "серпня",
+  "09": "вересня",
+  "10": "жовтня",
+  "11": "листопада",
+  "12": "грудня"
+}
+var anotherCalendar = ["01",  "02",  "03",  "04", "05",  "06",  "07",  "08",  "09",  "10",  "11",  "12"];
+
+function ukrainazeDates(date, anotherCalendar) {
+  var dateMas = date.split('/');
+  return "«" + dateMas[1] + "»" + " " + calendar[dateMas[0]] + " " + dateMas[2];
+}
+
 function getOsobaInputs(whichDiv, data) {
   var inputs = document.querySelectorAll(whichDiv + " input");
 
@@ -89,10 +111,14 @@ function scenarioTwoChoose(person, basement, payment) {
     return str;
   }
 
-  function stageOne() {
 
-    document.cookie = "generationDateStamp=" + Date.parse(new Date());
-    
+
+  function stageOne() {
+    var todayPluseOneWeek = new Date();
+    todayPluseOneWeek.setDate(todayPluseOneWeek.getDate() + 7);
+    alert(todayPluseOneWeek);
+    document.cookie = "generationDateStamp=" + Date.parse(new Date()) + ";expires=" + todayPluseOneWeek;
+    alert(document.cookie);
     var insertData = {};
     var whichDivOsoba = document.querySelector('.personType div.checked');
     var dictionary = {'FO': ".fizOsoba", 'YO': ".yurOsoba"};
@@ -136,9 +162,21 @@ function scenarioTwoChoose(person, basement, payment) {
     }
 
     insertData['dependString'] = dependString;   
-    insertData['single_cal2'] = document.getElementById('single_cal2').value;    
-     
-    var xhr = new XMLHttpRequest();
+    insertData['single_cal2'] = document.getElementById('single_cal2').value;   
+    insertData['surnameAndInitials'] = insertData['individual_surname'] + "." + insertData['individual_name'].slice(0, 1) + "." + insertData['individual_middlename'].slice(0, 1);
+
+    //insertData['expireDate'] = 
+
+    insertData['single_cal1_ukrainazed'] = ukrainazeDates(insertData['single_cal1']);
+    insertData['single_cal2_ukrainazed'] = ukrainazeDates(insertData['single_cal2']);
+    insertData['single_cal3_ukrainazed'] = ukrainazeDates(insertData['single_cal3']);
+
+    var datePlusThree = new Date(insertData['single_cal2']);
+    datePlusThree.setDate(datePlusThree.getDate() + 3);
+    insertData['expireDate'] = ukrainazeDates(anotherCalendar[datePlusThree.getMonth()] + "/" + datePlusThree.getDate() + "/" + datePlusThree.getFullYear(), true);
+    //for (var z in insertData)
+      //alert("insertData[" + z + "] = " + insertData[z]);
+    /*var xhr = new XMLHttpRequest();
 
     xhr.open("POST", '../../stageOne.php', true)
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
@@ -154,7 +192,7 @@ function scenarioTwoChoose(person, basement, payment) {
 
     }
     var json='requestData=' + JSON.stringify(insertData) + '&generationDateStamp=' + getDateStamp() + "&stageOneScenario=0";
-    xhr.send(json);
+    xhr.send(json);*/
 
   }
 
@@ -194,24 +232,33 @@ function scenarioTwoChoose(person, basement, payment) {
   }
 
   function stage1Navigation(elem) {
+
     document.getElementById('step-2').style.height = '0px';
-    elem.classList.toggle('disabled');
-    elem.classList.toggle('selected');
-    elem.parentElement.nextElementSibling.firstElementChild.classList.toggle('disabled');
-    elem.parentElement.nextElementSibling.firstElementChild.classList.toggle('selected');
+    elem.classList.remove('disabled');
+    elem.classList.add('selected');
+    elem.parentElement.nextElementSibling.firstElementChild.classList.add('disabled');
+    elem.parentElement.nextElementSibling.firstElementChild.classList.remove('selected');
   }
 
   function stage2Navigation(elem) {
     document.getElementById('step-2').style.height = document.getElementById('step-2').scrollHeight + 'px';
-    elem.classList.toggle('disabled');
-    elem.classList.toggle('selected');
-    elem.parentElement.previousElementSibling.firstElementChild.classList.toggle('disabled');
-    elem.parentElement.previousElementSibling.firstElementChild.classList.toggle('selected');
+    elem.classList.remove('disabled');
+    elem.classList.add('selected');
+    elem.parentElement.previousElementSibling.firstElementChild.classList.add('disabled');
+    elem.parentElement.previousElementSibling.firstElementChild.classList.remove('selected');
   }
   function fillFormWithFirstStageData(obj) {
     for (var item in obj) {
      // alert(item);
-      if (item != "stageOneScenario" && item != "stageTwoScenario" && item != "dependString")
+      if (item != "stageOneScenario" 
+        && item != "stageTwoScenario" 
+        && item != "dependString" 
+        && item != "surnameAndInitials" 
+        && item != "expireDate" 
+        && item != "single_cal1_ukrainazed" 
+        && item != "single_cal1_ukrainazed"
+        && item != "single_cal1_ukrainazed"
+        )
         document.getElementById(item).value = obj[item];
     }
   }
@@ -229,7 +276,8 @@ function scenarioTwoChoose(person, basement, payment) {
         if (xhr.status != 200) {
           alert(xhr.status + ': ' + xhr.statusText);
         } else {
-          fillFormWithFirstStageData( JSON.parse(xhr.responseText));
+          if (xhr.responseText != 'error encountered')
+            fillFormWithFirstStageData(JSON.parse(xhr.responseText));
         }
 
       }
