@@ -130,9 +130,9 @@
                   </div>
                   <div class="x_content">
                     <div id="wizard" class="form_wizard wizard_horizontal">
-                      <ul class="wizard_steps anchor">
+                      <ul class="wizard_steps anchor" style="cursor: pointer">
                         <li>
-                          <a href="#step-1" class="selected" isdone="1" rel="1">
+                          <a class="selected" isdone="1" rel="1" onclick="stage1Navigation(this)">
                             <span class="step_no">1</span>
                             <span class="step_descr">
                                               Перший етап<br>
@@ -141,7 +141,7 @@
                           </a>
                         </li>
                         <li>
-                          <a href="#step-2" class="disabled" isdone="03" rel="2">
+                          <a class="disabled" isdone="03" rel="2" onclick=" stage2Navigation(this)">
                             <span class="step_no">2</span>
                             <span class="step_descr">
                                               Другий етап<br>
@@ -152,7 +152,7 @@
                       </ul>
                       
                     <div class="stepContainer">
-                      <div id="step-2" class="content" style="display:;">
+                      <div id="step-2" class="content" style="position: relative;height: 0px; overflow: hidden;transition: all 1s;">
                         <form class="form-horizontal form-label-left">
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Перший біржовий номер <span class="required">*</span>
@@ -169,6 +169,7 @@
                             </div>
                           </div>
                         </form>
+                        <button style="position: absolute; right: 120px; bottom: 10px;" onclick="stageTwo()">Другий етап</button>
                       </div>
 
                       <div id="step-1" class="content" style="display: block;">
@@ -299,10 +300,10 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <div id="gender" class="btn-group" data-toggle="buttons">
                             <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="gender" value="male"> &nbsp; Чоловік &nbsp;
+                              <input type="radio" name="gender" value="male">Чоловік
                             </label>
                             <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="gender" value="female"> &nbsp; Жінка &nbsp;
+                              <input type="radio" name="gender" value="female">Жінка
                             </label>
                           </div>
                         </div>

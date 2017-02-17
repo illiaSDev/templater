@@ -3,7 +3,6 @@ function getOsobaInputs(whichDiv, data) {
 
   for (var i = 0; i < inputs.length; i++){
     if (inputs[i].type == "radio") {
-      alert(inputs[i].checked);
       if (inputs[i].checked) {
         data[inputs[i].parentElement.parentElement.id] = trimWhitespaceCharacters(inputs[i].nextSibling.nodeValue);
       }
@@ -136,24 +135,12 @@ function scenarioTwoChoose(person, basement, payment) {
       
     }
 
-    insertData['dependString'] = dependString;       
-    
+    insertData['dependString'] = dependString;   
+    insertData['single_cal2'] = document.getElementById('single_cal2').value;    
+     
+    var xhr = new XMLHttpRequest();
 
-    for (var name in insertData)
-      alert('inserData[' + name + '] = ' + insertData[name]);
-
-
-    
-/*    for (var i = 0; i < inputs.length; i++)
-      if (trimWhitespaceCharacters(inputs[i].value) == '') {
-        insertData[inputs[i].id] = "____________________";
-      } else {
-        insertData[inputs[i].id] = trimWhitespaceCharacters(inputs[i].value);
-      }
-*/
-    /*var xhr = new XMLHttpRequest();
-
-    xhr.open("POST", 'stageOne.php', true)
+    xhr.open("POST", '../../stageOne.php', true)
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
 
     xhr.onreadystatechange = function() { // (3)
@@ -167,7 +154,7 @@ function scenarioTwoChoose(person, basement, payment) {
 
     }
     var json='requestData=' + JSON.stringify(insertData) + '&generationDateStamp=' + getDateStamp() + "&stageOneScenario=0";
-    xhr.send(json);*/
+    xhr.send(json);
 
   }
 
@@ -188,7 +175,7 @@ function scenarioTwoChoose(person, basement, payment) {
 
     var xhr = new XMLHttpRequest();
 
-    xhr.open("POST", 'stageTwo.php', true)
+    xhr.open("POST", '../../stageTwo.php', true)
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
 
     xhr.onreadystatechange = function() { // (3)
@@ -204,5 +191,51 @@ function scenarioTwoChoose(person, basement, payment) {
     var json='requestData=' + JSON.stringify(insertData) + '&generationDateStamp=' + getDateStamp() + "&stageTwoScenario=0";
     xhr.send(json);
 
-    document.cookie = "generationDateStamp=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
   }
+
+  function stage1Navigation(elem) {
+    document.getElementById('step-2').style.height = '0px';
+    elem.classList.toggle('disabled');
+    elem.classList.toggle('selected');
+    elem.parentElement.nextElementSibling.firstElementChild.classList.toggle('disabled');
+    elem.parentElement.nextElementSibling.firstElementChild.classList.toggle('selected');
+  }
+
+  function stage2Navigation(elem) {
+    document.getElementById('step-2').style.height = document.getElementById('step-2').scrollHeight + 'px';
+    elem.classList.toggle('disabled');
+    elem.classList.toggle('selected');
+    elem.parentElement.previousElementSibling.firstElementChild.classList.toggle('disabled');
+    elem.parentElement.previousElementSibling.firstElementChild.classList.toggle('selected');
+  }
+  function fillFormWithFirstStageData(obj) {
+    for (var item in obj) {
+     // alert(item);
+      if (item != "stageOneScenario" && item != "stageTwoScenario" && item != "dependString")
+        document.getElementById(item).value = obj[item];
+    }
+  }
+  function restoreForm() {
+
+    if (getDateStamp()) {
+      var xhr = new XMLHttpRequest();
+
+      xhr.open("POST", '../../restoreForm.php', true)
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+
+      xhr.onreadystatechange = function() { // (3)
+        if (xhr.readyState != 4) return;
+
+        if (xhr.status != 200) {
+          alert(xhr.status + ': ' + xhr.statusText);
+        } else {
+          fillFormWithFirstStageData( JSON.parse(xhr.responseText));
+        }
+
+      }
+      var json='generationDateStamp=' + getDateStamp();
+      xhr.send(json);
+    }    
+
+  }
+  restoreForm();
