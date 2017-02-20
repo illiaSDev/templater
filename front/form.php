@@ -158,14 +158,14 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Перший біржовий номер <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="firstNumber" required="required" class="form-control col-md-7 col-xs-12" placeholder="Перший біржовий номер">
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Другий біржевий номер <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="number" id="secondNumber" name="last-name" required="required" class="form-control col-md-7 col-xs-12" placeholder="Другий біржовий номер">
                             </div>
                           </div>
                         </form>

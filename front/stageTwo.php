@@ -29,6 +29,8 @@ function fillAndSaveTemplate($str, $newDir, $inputNames, $inputValues) {
   
   $templateProcessor->saveAs($newPath);
 }
+
+$previousData = file_get_contents(interimFileName($_POST['generationDateStamp']));
 $requestData = json_decode($_POST['requestData'], true);
 $inputNames = array();
 $inputValues = array();
@@ -37,6 +39,12 @@ foreach($requestData as $x => $x_value) {
   array_push($inputNames, $x);
   array_push($inputValues, $x_value);
 }
+
+array_push($inputNames, 'firstNumber');
+array_push($inputNames, 'secondNumber');
+array_push($inputValues, $requestData['firstNumber']);
+array_push($inputValues, $requestData['secondNumber']);
+
 
 for ($x = 0; $x < count($obj[$_POST['stageTwoScenario']]); $x++) {
 

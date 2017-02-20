@@ -1,4 +1,3 @@
-alert(document.cookie);
 var calendar = {
   "01": "січня",
   "02": "лютого",
@@ -23,6 +22,7 @@ function ukrainazeDates(date, anotherCalendar) {
 function getOsobaInputs(whichDiv, data) {
   var inputs = document.querySelectorAll(whichDiv + " input");
 
+  alert(inputs[0]);
   for (var i = 0; i < inputs.length; i++){
     if (inputs[i].type == "radio") {
       if (inputs[i].checked) {
@@ -116,9 +116,9 @@ function scenarioTwoChoose(person, basement, payment) {
   function stageOne() {
     var todayPluseOneWeek = new Date();
     todayPluseOneWeek.setDate(todayPluseOneWeek.getDate() + 7);
-    alert(todayPluseOneWeek);
+    //alert(todayPluseOneWeek);
     document.cookie = "generationDateStamp=" + Date.parse(new Date()) + ";expires=" + todayPluseOneWeek;
-    alert(document.cookie);
+   // alert(document.cookie);
     var insertData = {};
     var whichDivOsoba = document.querySelector('.personType div.checked');
     var dictionary = {'FO': ".fizOsoba", 'YO': ".yurOsoba"};
@@ -176,7 +176,7 @@ function scenarioTwoChoose(person, basement, payment) {
     insertData['expireDate'] = ukrainazeDates(anotherCalendar[datePlusThree.getMonth()] + "/" + datePlusThree.getDate() + "/" + datePlusThree.getFullYear(), true);
     //for (var z in insertData)
       //alert("insertData[" + z + "] = " + insertData[z]);
-    /*var xhr = new XMLHttpRequest();
+    var xhr = new XMLHttpRequest();
 
     xhr.open("POST", '../../stageOne.php', true)
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
@@ -192,7 +192,7 @@ function scenarioTwoChoose(person, basement, payment) {
 
     }
     var json='requestData=' + JSON.stringify(insertData) + '&generationDateStamp=' + getDateStamp() + "&stageOneScenario=0";
-    xhr.send(json);*/
+    xhr.send(json);
 
   }
 
@@ -201,15 +201,12 @@ function scenarioTwoChoose(person, basement, payment) {
     if (!getDateStamp())
       return alert("Previous data is unset. Please, pass first stage of creation.");
 
-    var inputs = document.querySelectorAll('div.formStageTwo input');
-    
-    var insertData = {};
-    for (var i = 0; i < inputs.length; i++)
-      if (trimWhitespaceCharacters(inputs[i].value) == '') {
-        insertData[inputs[i].id] = "???????";
-      } else {
-        insertData[inputs[i].id] = trimWhitespaceCharacters(inputs[i].value);
-      }
+    var insertData ={};
+    if (!getOsobaInputs("#step-2", insertData)) {
+      return;
+    };
+
+
 
     var xhr = new XMLHttpRequest();
 
@@ -226,7 +223,7 @@ function scenarioTwoChoose(person, basement, payment) {
       }
 
     }
-    var json='requestData=' + JSON.stringify(insertData) + '&generationDateStamp=' + getDateStamp() + "&stageTwoScenario=0";
+    var json='requestData=' + JSON.stringify(insertData) + '&generationDateStamp=' + getDateStamp();
     xhr.send(json);
 
   }
@@ -256,8 +253,8 @@ function scenarioTwoChoose(person, basement, payment) {
         && item != "surnameAndInitials" 
         && item != "expireDate" 
         && item != "single_cal1_ukrainazed" 
-        && item != "single_cal1_ukrainazed"
-        && item != "single_cal1_ukrainazed"
+        && item != "single_cal2_ukrainazed"
+        && item != "single_cal3_ukrainazed"
         )
         document.getElementById(item).value = obj[item];
     }

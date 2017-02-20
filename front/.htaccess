@@ -1,0 +1,5 @@
+<Files *.rar>
+  deny from all
+</Files>
+ErrorDocument 403 /openserver/test/redirect.php
+ErrorDocument 404 /openserver/test/redirect.php
